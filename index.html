@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palambing po...</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 2rem;
+            color: white;
+            text-shadow: 2px 2px 5px red;
+            text-align: center;
+        }
+        button, input {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+        button {
+            background-color: red;
+            color: white;
+            cursor: pointer;
+        }
+        #noButton {
+            background-color: gray;
+        }
+        #yesButton {
+            animation: pulse 1s infinite;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .credits {
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+        }
+        .credits a {
+            text-decoration: none;
+            color: darkgreen;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: fall 3s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="message">Enter your name 🥺</h1>
+    <input type="text" id="nameInput" placeholder="Your name">
+    <button onclick="startInteraction()">Submit</button>
+    <div id="interaction" style="display: none; text-align: center;">
+        <h1 id="palambingMessage"></h1>
+        <div class="button-container">
+            <button id="yesButton" onclick="showLove()">Yes ❤️</button>
+            <button id="noButton" onclick="showNo()">No 😢</button>
+        </div>
+    </div>
+    <div class="credits">
+        <a href="https://web.facebook.com/profile.php?id=100091133423695" target="_blank">Credits: Juno Delos Santos</a>
+    </div>
+    <script>
+        function startInteraction() {
+            let name = document.getElementById("nameInput").value;
+            if (name.trim() === "") {
+                alert("Please enter your name!");
+                return;
+            }
+            document.getElementById("message").style.display = "none";
+            document.getElementById("nameInput").style.display = "none";
+            document.querySelector("button").style.display = "none";
+            document.getElementById("interaction").style.display = "block";
+            document.getElementById("palambingMessage").innerHTML = name + ", Palambing puu 🥺";
+        }
+
+        function showNo() {
+            let message = document.getElementById("palambingMessage");
+            message.innerHTML = "Asa, di mo yan mapipindot 😝😝😝";
+            
+            let noButton = document.getElementById("noButton");
+            let randomX = Math.random() * (window.innerWidth - 200) - 100;
+            let randomY = Math.random() * (window.innerHeight - 200) - 100;
+            noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+        
+        function showLove() {
+            let message = document.getElementById("palambingMessage");
+            message.innerHTML = "Yeyyyy! Palambingg na, chat mo na ako 😝😍";
+            
+            let noButton = document.getElementById("noButton");
+            noButton.style.transform = "translate(0, 0)";
+            
+            let colors = ["red", "pink", "blue", "yellow", "green", "purple", "orange", "white"];
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement("span");
+                heart.innerHTML = "🤍";
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                heart.classList.add("heart");
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => { heart.remove(); }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>
