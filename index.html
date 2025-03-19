@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palambing po...</title>
+    <title>Palambing po</title>
     <style>
         body {
             display: flex;
@@ -109,8 +109,8 @@
             message.innerHTML = "Asa, di mo yan mapipindot 😝😝😝";
             
             let noButton = document.getElementById("noButton");
-            let randomX = Math.random() * (window.innerWidth - 200) - 100;
-            let randomY = Math.random() * (window.innerHeight - 200) - 100;
+            let randomX = Math.random() * 200 - 100; 
+            let randomY = Math.random() * 200 - 100; 
             noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
         }
         
@@ -121,11 +121,10 @@
             let noButton = document.getElementById("noButton");
             noButton.style.transform = "translate(0, 0)";
             
-            let colors = ["red", "pink", "blue", "yellow", "green", "purple", "orange", "white"];
+            let heartColors = ["🤍"];
             for (let i = 0; i < 30; i++) {
                 let heart = document.createElement("span");
-                heart.innerHTML = "🤍";
-                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                heart.innerHTML = heartColors[Math.floor(Math.random() * heartColors.length)];
                 heart.classList.add("heart");
                 heart.style.left = Math.random() * 100 + "vw";
                 heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
